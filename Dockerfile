@@ -1,4 +1,4 @@
-FROM salesforce/salesforcedx:7.61.0-full
+FROM salesforce/salesforcedx:7.72.0-full
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
 # Note: this installs the necessary libs to make the bundled version of Chromium that Puppeteer
 # installs, work.
@@ -10,5 +10,5 @@ RUN apt-get update \
     && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
-COPY sfdx-browserforce-plugin /sfdx-browserforce-plugin
-RUN sfdx plugins:link /sfdx-browserforce-plugin
+RUN echo 'y' | sfdx plugins:install sfdx-browserforce-plugin
+RUN echo 'y' | sfdx plugins:install sfdx-executor
